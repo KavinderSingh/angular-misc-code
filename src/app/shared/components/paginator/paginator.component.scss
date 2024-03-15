@@ -1,0 +1,48 @@
+::ng-deep {
+    .p-paginator-page-options {
+        border: none !important;
+        span {
+            font-size: 12px;
+             padding: 14px 0px !important;
+        }
+        .p-dropdown-trigger {
+            display: none !important;
+        }
+    }
+
+    .table-footer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #dddddd;
+        border-top: none;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        font-size: 12px;
+        .rows-select-container {
+            margin: 0 24px;
+            height: fit-content;
+            .p-dropdown {
+                background: #F4F4F4;
+                border: none;
+                &:not(.p-disabled).p-focus {
+                    box-shadow: none !important;
+                }
+                span {
+                    padding: 4px 0px 4px 8px !important;
+                    font-size: 12px !important;
+                }
+                .p-dropdown-trigger {
+                    width: 28px !important;
+                }
+            }
+        }
+    }
+}
+
+.paginator-container {
+    display: flex;
+    margin: 0px 24px;
+}

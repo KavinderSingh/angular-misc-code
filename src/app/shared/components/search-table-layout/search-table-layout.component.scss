@@ -1,0 +1,45 @@
+// Main Container
+.search-table-layout-container {
+    margin: 0px;
+    padding: 16px 24px;
+    border-right: 1px solid #D9D9D9;
+    overflow-y: auto;
+    height: calc(100vh - 121px);
+}
+
+.search-table-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+// Search Section
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 40px;
+    border: 1px solid #d9d9d9;
+    padding: 12px 16px;
+    background: var(--base-white, #fff);
+    width: 320px;
+    border-radius: 6px;
+
+    .input-icon {
+        img {
+          width: 16px;
+          height: 16px;
+        }
+    }
+
+    .input-search {
+        width: 100%;
+
+        input {
+            border: none;
+            width: 100%;
+            font-size: 14px;
+            outline: none;
+        }
+    }
+}

@@ -1,0 +1,103 @@
+<p-table
+  [columns]="cols"
+  [value]="tableData"
+  [customSort]="false"
+  [tableStyle]="{ 'min-width': '40rem' }"
+  [scrollable]="scrollable"
+  [scrollHeight]="scrollHeight"
+>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" pSortableColumn="{{ col.field }}">
+        {{ col.header | ellipsis : 15 }}
+        <p-sortIcon field="{{ col.field }}"></p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <td *ngFor="let col of columns">
+
+        <!-- Apply fraud flag -->
+        <ng-container *ngIf="col.field === 'fraudFlag'; else claimStatusBlock">
+          <ng-container *ngIf="rowData[col.field] === 'Y'; else unselectedFlag">
+            <img [src]="flagSelected" alt="Flag" />
+          </ng-container>
+          <ng-template #unselectedFlag>
+            <img [src]="flagUnselected" alt="Flag" />
+          </ng-template>
+        </ng-container>
+
+        <!-- Apply claim status -->
+        <ng-template #claimStatusBlock>
+          <ng-container *ngIf="col.field === 'claimStatus'; else churnRiskSeverityBlock">
+            <div *ngIf="rowData[col.field] === 'approved'" [ngClass]="approvedStatusCellStyle">
+              {{ rowData[col.field] }}
+            </div>
+            <div *ngIf="rowData[col.field] === 'pending'" [ngClass]="pendingStatusCellStyle">
+              {{ rowData[col.field] }}
+            </div>
+            <div *ngIf="rowData[col.field] === 'denied'" [ngClass]="deniedStatusCellStyle">
+              {{ rowData[col.field] }}
+            </div>
+          </ng-container>
+        </ng-template>
+
+        <!-- Apply churn severity -->
+        <ng-template #churnRiskSeverityBlock>
+          <ng-container *ngIf="col.field === 'churnLikelihood' || col.field === 'claimLikelihood'; else datePipeBlock">
+            <p-tag
+              [severity]="getSeverity(rowData[col.field])"
+              [value]="rowData[col.field]"
+            ></p-tag>
+          </ng-container>
+        </ng-template>
+
+        <!-- Apply date pipe in YYYY-MM-DD format -->
+        <ng-template #datePipeBlock>
+          <ng-container *ngIf="col.field === 'claimDate' || col.field === 'recentClaim'; else yearPipeBlock">
+            <ng-container *ngIf="col.field === 'recentClaim' && rowData[col.field] === null; else dateBlock">
+              N.A.
+            </ng-container>
+            <ng-template #dateBlock>
+              {{ rowData[col.field] | date:'yyyy-MM-dd' }}
+            </ng-template>
+          </ng-container>
+        </ng-template>
+        
+        <!-- Apply year pipe in YYYY format -->
+        <ng-template #yearPipeBlock>
+          <ng-container *ngIf="col.field === 'recentActive'; else currencyPipeBlock">
+            <ng-container *ngIf="col.field === 'recentActive' && rowData[col.field] === null; else yearBlock">
+              N.A.
+            </ng-container>
+            <ng-template #yearBlock>
+              {{ rowData[col.field] }}
+            </ng-template>
+          </ng-container>
+        </ng-template>
+
+        <!-- Apply currency pipe -->
+        <ng-template #currencyPipeBlock>
+          <ng-container *ngIf="col.field === 'amountClaimed' || col.field === 'netPremium' || col.field === 'propertyValue' || col.field === 'amountPaid'; else userProfileLinkBlock">
+            {{ rowData[col.field] | currency:'USD':'symbol':'1.2-2' }}
+          </ng-container>
+        </ng-template>
+
+        <!-- Show user profile link on ids -->
+        <ng-template #userProfileLinkBlock>
+          <ng-container *ngIf="showProfileLink && (col.field === 'memberId' || col.field === 'customerId'); else defaultContent">
+            <a [routerLink]="['userProfile', rowData.memberId || rowData.customerId]">
+              {{ rowData[col.field] }}
+            </a>
+          </ng-container>
+        </ng-template>
+
+        <!-- Default -->
+        <ng-template #defaultContent>
+          {{ rowData[col.field] }}
+        </ng-template>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

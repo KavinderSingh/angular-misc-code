@@ -1,0 +1,41 @@
+::ng-deep {
+  .p-tabmenu .p-tabmenu-nav
+  {
+    height: 59px;
+    border: 1px solid #D9D9D9;
+    
+
+    .p-tabmenuitem.p-highlight .p-menuitem-link {
+      color: #f44848;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      text-transform: capitalize;
+      text-decoration: none;
+      border-bottom: 2px solid #f44848;
+    }
+    .p-menuitem-badge {
+      background-color: #fff0f0 !important;
+      color: #F44848 !important;
+      border-radius: 100px;
+      padding-left: 0.4rem;
+      padding-right: 0.5rem;
+    }
+  } 
+  a {
+    font-size: 14px;
+    color: #455573;
+    text-decoration: none;
+    // padding: 8px 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    text-transform: capitalize;
+  }
+  ul {
+    margin-bottom: 0;
+    padding-left: 0;
+  }  
+}
+

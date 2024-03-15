@@ -1,0 +1,24 @@
+<div class="table-footer-container">
+  <div class="rows-select-container">
+    Showing
+    <p-dropdown
+      (onChange)="onRowsChange($event)"
+      [options]="options"
+      optionLabel="name"
+      [(ngModel)]="selectedValue"
+    ></p-dropdown>
+    of {{totalRecords}} Records
+  </div>
+  <div class="paginator-container flex align-items-center justify-content-end">
+    <p-paginator
+      [rows]="rowsPerPage"
+      [totalRecords]="totalRecords"
+      currentPageReportTemplate="Page {currentPage} of {totalPages}"
+      (onPageChange)="onPageChange($event)"
+      [showJumpToPageDropdown]="true"
+      [showPageLinks]="false"
+      class="d-flex"
+    ></p-paginator>
+  </div>
+  
+</div>

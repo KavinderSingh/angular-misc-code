@@ -1,0 +1,15 @@
+
+<div class="cdp-breadcrumb">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li *ngFor="let segment of segments; index as i" class="breadcrumb-item">
+                <div *ngIf="segment !=''" class="current-page d-inline-block ms-1">
+                    <a style="cursor: pointer;" *ngIf="i != segments.length - 1; else elseBlock" (click)="generateUrl(segment)" class="text-decoration-none item pe-auto"[ngClass]="i == segments.length - 1 ? 'current-page': ''" [innerHTML]="segment" ></a>
+                    <ng-template #elseBlock>
+                        <a style="cursor: pointer;" class="text-decoration-none pe-auto" [ngClass]="i == segments.length - 1 ? 'current-page': ''" [innerHTML]="segment"></a>
+                    </ng-template>
+                </div>
+            </li>
+        </ol>
+    </nav>
+</div>

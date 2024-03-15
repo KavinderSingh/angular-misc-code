@@ -1,0 +1,34 @@
+<div class="row g-0 search-table-layout-container">
+    <div class="col-12 search-table-layout">
+
+        <!-- Search Section -->
+        <div class="search-container">
+            <div class="input-icon">
+                <img [src]="searchIcon" alt="" />
+            </div>
+            <div class="input-search">
+                <input 
+                    type="text"
+                    placeholder="Search"
+                    name="search"
+                    [(ngModel)]="searchText"
+                    (keyup.enter)="onSearchAction()"
+                />
+            </div>
+        </div>
+        
+        <!-- Table Layout & Pagination -->
+        <div class="table-layout-container">
+            <app-table-layout
+                [cols]="tableHeader"
+                [tableData]="tableRowData"
+            ></app-table-layout>
+            <app-paginator
+                [rowsPerPage]="pagelimit"
+                [totalRecords]="totalRecords"
+                (onRowsChangeEvent)="onRowsChange($event)"
+                (onPageChangeEvent)="onPageChange($event)"
+            ></app-paginator>
+        </div>
+    </div>
+</div>

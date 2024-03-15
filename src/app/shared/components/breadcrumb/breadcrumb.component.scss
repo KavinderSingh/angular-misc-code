@@ -1,0 +1,31 @@
+@mixin custom-breadcrumb($icon-color,$current-page-color) {
+    .breadcrumb{
+        font-size: 14px;
+        font-family:Helvetica;
+        font-weight: 400 !important;
+        a:hover {
+            color: var(--l-grey-500) !important;
+        }
+        .current-page{
+            color: $current-page-color !important;
+            display: inline;
+            &:hover{
+                color: unset !important;
+            }
+        }
+    }
+    .breadcrumb>li+li:before {
+        content: url('data:image/svg+xml,<svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L1 9" stroke="black" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+        padding: 0 5px;
+    }
+}
+
+.cdp-breadcrumb{
+    @include custom-breadcrumb(var(--l-grey-500), var(--l-grey-900));
+    margin: 20px 0px;
+}
+
+.item{
+    cursor:pointer;
+    color : var(--l-grey-500) !important;
+}
